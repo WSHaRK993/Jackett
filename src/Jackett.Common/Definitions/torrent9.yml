@@ -7,7 +7,8 @@
   encoding: UTF-8
   followredirect: true
   links:
-    - https://www.torrent9.uno/
+    - https://wvw.t9.pe/
+
   legacylinks:
     - http://www.torrent9.ec/
     - http://www.torrent9.red/
@@ -22,6 +23,9 @@
     - https://www.torrent9.ph/
     - https://ww1.torrent9.ph/
     - https://torrent9.ga/
+    - https://www.torrent9.uno/
+    - https://wvw.torrent9.uno/
+    - https://ww1.torrent9.uno/
 
   caps:
     categorymappings:
@@ -37,12 +41,14 @@
       search: [q]
       tv-search: [q, season, ep]
 
+  settings: []
+
   download:
     selector: a[href^="/downloading/"]
       
   search:
     paths:
-      - path: "{{ if .Keywords }}/search_torrent/{{ .Keywords }}/page-0{{else}}/top_torrent.php{{end}}"
+      - path: "{{ if .Keywords }}/search_torrent/{{ re_replace .Keywords \"[']+\" \"\" }}/page-0{{else}}/top_torrent.php{{end}}"
     rows:
       selector: div.table-responsive > table tbody tr
     fields:
